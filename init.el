@@ -19,12 +19,15 @@
 	       helm
 	       helm-swoop
                smartparens
+	       popwin
                ;; --- Major Mode ---
                js2-mode
                ;; --- Minor Mode ---
                nodejs-repl
                exec-path-from-shell
 	       nyan-mode
+	       eclim
+	       company-emacs-eclim
 	       ;; --- Themes ---
 	       doom-themes
 	       ) "Default packages")
@@ -42,11 +45,27 @@
   (dolist (pkg ddy/packages)
     (when (not (package-installed-p pkg))
       (package-install pkg))))
+
+
+;; setup popwin
+(require 'popwin)
+(popwin-mode t)
 ;; Find Executable Path on OS X
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-
+;; disable auto-save
+(setq auto-save-default nil)
+;; setup eclim
+(require 'eclim)
+(add-hook 'java-mode-hook 'eclim-mode)
+(setq eclimd-autostart t)
+(require 'company)
+(require 'company-emacs-eclim)
+(company-emacs-eclim-setup)
+(global-company-mode t)
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
 ;; setup nodejs-repl
 (require 'nodejs-repl)
 ;; setup js2-mode
@@ -74,6 +93,7 @@
 ;; setup nyan-mode cat
 (require 'nyan-mode)
 (nyan-mode)
+(nyan-start-animation)
 (setq nyan-wavy-trail t)
 (setq nyan-animate-nyancat t)
 ;; setup doom themes
@@ -137,7 +157,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-idle-delay 0.05)
- '(company-minimum-prefix-length 1))
+ '(company-minimum-prefix-length 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
