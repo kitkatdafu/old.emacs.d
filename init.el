@@ -46,7 +46,9 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
-
+;; setup flyspell
+(flyspell-mode t)
+(add-hook 'org-mode-hook 'flyspell-mode)
 ;; setup popwin
 (require 'popwin)
 (popwin-mode t)
