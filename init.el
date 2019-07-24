@@ -46,6 +46,11 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+;; setup abbrev mode
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(
+					    ("8mm" "mrr1vfe")
+					    ))
 ;; setup flyspell
 (flyspell-mode t)
 (add-hook 'org-mode-hook 'flyspell-mode)
