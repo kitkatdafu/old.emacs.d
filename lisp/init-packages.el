@@ -108,7 +108,7 @@
 (helm-autoresize-mode 1)
 (setq helm-autoresize-max-height 32)
 (setq helm-autoresize-min-height 28)
-(helm-mode 1)
+ (helm-mode 1)
 ;; Locate the helm-swoop folder to your path
 (add-to-list 'load-path "~/.emacs.d/elisp/helm-swoop")
 (require 'helm-swoop)
