@@ -56,7 +56,6 @@
        auto-mode-alist))
 
 ;; setup smartparens
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 ;; setup nyan-mode cat
@@ -77,6 +76,8 @@
 ;; (doom-themes-neotree-config)
 ;; or for treemacs users
 ;; (doom-themes-treemacs-config)
+;; org-mode's native fontification.
+(doom-themes-org-config)
 
 ;; setup eclim
 (require 'eclim)
@@ -103,9 +104,7 @@
 ;; setup helm
 (require 'helm)
 (require 'helm-config)
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
+
 (helm-autoresize-mode 1)
 (setq helm-autoresize-max-height 32)
 (setq helm-autoresize-min-height 28)
@@ -113,7 +112,7 @@
 ;; Locate the helm-swoop folder to your path
 (add-to-list 'load-path "~/.emacs.d/elisp/helm-swoop")
 (require 'helm-swoop)
-(global-set-key (kbd "C-s") 'helm-swoop-from-isearch)
+
 
 ;; using hippie to enhance company-mode
 (setq hippie-expand-try-function-list '(try-expand-debbrev
@@ -126,7 +125,7 @@
                                         try-expand-line
                                         try-complete-lisp-symbol-partially
                                         try-complete-lisp-symbol))
-(global-set-key (kbd "s-/") 'hippie-expand)
+
 
 
 (provide 'init-packages)
