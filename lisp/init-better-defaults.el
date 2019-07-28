@@ -23,7 +23,33 @@
 (defun indent-buffer()
   (interactive)
   (indent-region (point-min) (point-max)))
+;; disable doubling quotation mark in lisp 
+(sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 
+;; highlight parentesis when cursor is in side two parenteses.
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
+
+;; Replace DOS eolns CR LF with Unix eolns CR
+(defun remove-dos-eol ()
+  "Replace DOS eolns CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+
+;; Do not show ^M in files containing mixed UNIX and DOS line endings.
+(defun hidden-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (unless buffer-display-table
+    (setq buffer-display-table (make-display-table)))
+  (aset buffer-display-table ?\^M []))
+
+;; indent region
 (defun indent-region-or-buffer()
   (interactive)
   (save-excursion
@@ -34,5 +60,7 @@
       (progn
         (indent-buffer)
         (message "Indent buffer.")))))
+
+
 
 (provide 'init-better-defaults)

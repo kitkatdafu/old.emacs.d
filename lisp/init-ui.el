@@ -7,7 +7,7 @@
 ;; 关闭启动帮助画面
 (setq inhibit-splash-screen t)
 ;; 更改显示字体
-(setq FONT "SF Mono-16")
+(setq FONT "SF Mono-15")
 (set-face-attribute 'default nil :font FONT)
 (set-frame-font FONT nil t)
 ;; transparent titlebar
