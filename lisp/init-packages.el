@@ -154,11 +154,11 @@
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 ;; Load the theme (doom-one, doom-molokai, etc);
-(load-theme 'doom-dracula t)
+(load-theme 'doom-nova t)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 ;; (doom-themes-neotree-config)
 ;; or for treemacs users
-;; (doom-themes-treemacs-config)
+(doom-themes-treemacs-config)
 ;; org-mode's native fontification.
 (doom-themes-org-config)
 
@@ -175,12 +175,6 @@
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
-;; using C-n and C-p instead of M-n and M-p
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 ;; setup popwin
 (require 'popwin)
