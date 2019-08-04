@@ -154,11 +154,11 @@
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 ;; Load the theme (doom-one, doom-molokai, etc);
-(load-theme 'doom-nova t)
+(load-theme 'doom-one t)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 ;; (doom-themes-neotree-config)
 ;; or for treemacs users
-(doom-themes-treemacs-config)
+;; (doom-themes-treemacs-config)
 ;; org-mode's native fontification.
 (doom-themes-org-config)
 
