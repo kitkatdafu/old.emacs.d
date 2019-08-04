@@ -61,6 +61,14 @@
         (indent-buffer)
         (message "Indent buffer.")))))
 
-
+(setq-default abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(					    
+					    ("a33" "á")
+					    ("e33" "é")
+					    ("i33" "í")
+					    ("o33" "ó")
+					    ("u33" "ú")
+					    ("n33" "ñ")
+					    ))
 
 (provide 'init-better-defaults)
