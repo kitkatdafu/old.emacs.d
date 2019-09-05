@@ -45,7 +45,7 @@
 	       lsp-treemacs
 	       lsp-ui
 	       treemacs
-	       emacshtmlize
+	       htmlize
 	       ;; --- Themes ---
 	       doom-themes
 	       ) "Default packages")
