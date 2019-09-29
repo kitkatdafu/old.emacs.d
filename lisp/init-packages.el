@@ -129,16 +129,6 @@
 ;; setup js2-refactor
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 
-
-;; setup web-mode indentation
-(defun my-web-mode-indent-setup ()
-  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
-  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
-  (setq js2-basic-offset 2)
-  )
-(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
-
 ;; setup smartparens
 (smartparens-global-mode t)
 

@@ -61,14 +61,17 @@
         (indent-buffer)
         (message "Indent buffer.")))))
 
-(setq-default abbrev-mode t)
-(define-abbrev-table 'global-abbrev-table '(					    
-					    ("a33" "á")
-					    ("e33" "é")
-					    ("i33" "í")
-					    ("o33" "ó")
-					    ("u33" "ú")
-					    ("n33" "ñ")
-					    ))
+;; setup web-mode indentation
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  (setq js2-basic-offset 2)
+  )
+(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+
+;; c indent
+(setq c-default-style "linux"
+          c-basic-offset 4)
 
 (provide 'init-better-defaults)
