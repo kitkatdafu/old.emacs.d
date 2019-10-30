@@ -35,8 +35,6 @@
                nodejs-repl
                exec-path-from-shell
 	       nyan-mode
-	       eclim
-	       company-emacs-eclim
 	       js2-refactor
 	       yasnippet
 	       auto-yasnippet
@@ -46,6 +44,9 @@
 	       lsp-ui
 	       treemacs
 	       htmlize
+	       ess
+	       org-ref
+	       ess-smart-underscore
 	       ;; --- Themes ---
 	       doom-themes
 	       ) "Default packages")
@@ -153,11 +154,6 @@
 ;; org-mode's native fontification.
 (doom-themes-org-config)
 
-;; setup eclim
-(require 'eclim)
-(add-hook 'java-mode-hook 'eclim-mode)
-(setq eclimd-autostart t)
-
 ;; setup company
 (require 'company)
 (require 'company-emacs-eclim)
@@ -190,6 +186,10 @@
 ;; setup yasnippet
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
+
+;; setup ess
+(require 'ess-r-mode)
+(require 'ess-smart-underscore)
 
 
 (provide 'init-packages)
