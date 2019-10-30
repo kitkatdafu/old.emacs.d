@@ -156,8 +156,6 @@
 
 ;; setup company
 (require 'company)
-(require 'company-emacs-eclim)
-(company-emacs-eclim-setup)
 (add-hook 'prog-mode-hook 'company-mode)
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
