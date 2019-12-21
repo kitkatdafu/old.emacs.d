@@ -112,6 +112,7 @@
 ;; setup lsp-mode
 (require 'lsp-mode)
 (add-hook 'prog-mode-hook #'lsp)
+
 (require 'company-lsp)
 (setq company-lsp-async 1)
 (setq company-lsp-cache-candidates t)

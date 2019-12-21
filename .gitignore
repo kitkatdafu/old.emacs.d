@@ -14,3 +14,5 @@ recentf
 elpa/
 auto-save-list/
 *~
+.cache/treemacs-persist
+.lsp-session-v1
