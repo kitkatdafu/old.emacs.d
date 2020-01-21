@@ -4,16 +4,24 @@
 ;; You may delete these explanatory comments.
 (when (>= emacs-major-version 24)
      (require 'package)
-     (package-initialize)
-     (setq package-archives '(
+     (package-initialize))
+
+(setq am-i-in-china nil)
+(if am-i-in-china
+    (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+			     ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+    (setq package-archives '(
 			      ("melpa-stable" . "https://stable.melpa.org/packages/")
 			      ("gnu" . "http://elpa.gnu.org/packages/")
 			      ("elpa" . "https://melpa.org/packages/")
-			      )))
+			      ))
+)
 
 ;; cl - Common Lisp Extension
 (require 'cl)
 
+(setenv "PATH" (concat "/usr/local/smlnj/bin:" (getenv "PATH")))
+(setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
 ;; Add Packages
 (defvar ddy/packages '(
                ;; --- Auto-completion ---
@@ -28,10 +36,8 @@
 	       expand-region
 	       iedit
 	       flycheck
-               ;; --- Major Mode ---
                js2-mode
 	       web-mode
-               ;; --- Minor Mode ---
                nodejs-repl
                exec-path-from-shell
 	       nyan-mode
@@ -44,10 +50,10 @@
 	       lsp-ui
 	       treemacs
 	       htmlize
-	       ess
 	       org-ref
-	       ess-smart-underscore
 	       fill-column-indicator
+	       flyspell-popup
+	       ;; sml-mode
 	       ;; --- Themes ---
 	       doom-themes
 	       ) "Default packages")
@@ -55,6 +61,7 @@
 (setq package-selected-packages ddy/packages)
 
 (defun ddy/packages-installed-p ()
+  
   (loop for pkg in ddy/packages
 	when (not (package-installed-p pkg)) do (return nil)
 	finally (return t)))
@@ -169,7 +176,11 @@
 
 ;; setup flyspell
 (flyspell-mode t)
+(setq flyspell-issue-message-flag nil) ;; improve performance
+(add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
 (add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(define-key flyspell-mode-map (kbd "C-;") #'flyspell-popup-correct)
 
 ;; using hippie to enhance company-mode
 (setq hippie-expand-try-function-list '(try-expand-debbrev
@@ -186,10 +197,6 @@
 ;; setup yasnippet
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
-
-;; setup ess
-(require 'ess-r-mode)
-(require 'ess-smart-underscore)
 
 ;; setup fci-mode
 (require 'fill-column-indicator)
@@ -211,6 +218,5 @@
                (null popup-instances))
       (setq sanityinc/fci-mode-suppressed nil)
       (turn-on-fci-mode)))
-
 
 (provide 'init-packages)

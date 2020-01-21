@@ -5,6 +5,8 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+
+;; (require 'check-location)
 (require 'init-packages)
 (require 'init-ui)
 (require 'init-better-defaults)
