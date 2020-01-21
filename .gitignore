@@ -16,3 +16,6 @@ auto-save-list/
 *~
 .cache/treemacs-persist
 .lsp-session-v1
+.cache/treemacs-persist
+.DS_Store
+.lsp-session-v1
