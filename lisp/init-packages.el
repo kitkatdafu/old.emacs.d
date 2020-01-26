@@ -48,11 +48,14 @@
 	       company-lsp
 	       lsp-treemacs
 	       lsp-ui
+	       lsp-haskell
 	       treemacs
 	       htmlize
+	       haskell-mode
 	       org-ref
 	       fill-column-indicator
 	       flyspell-popup
+	       rust-mode
 	       ;; sml-mode
 	       ;; --- Themes ---
 	       doom-themes
@@ -118,6 +121,8 @@
 
 ;; setup lsp-mode
 (require 'lsp-mode)
+(require 'lsp-haskell)
+(setq lsp-haskell-process-path-hie "hie-wrapper")
 (add-hook 'prog-mode-hook #'lsp)
 
 (require 'company-lsp)

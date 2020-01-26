@@ -72,6 +72,14 @@
 
 ;; c indent
 (setq c-default-style "linux"
-          c-basic-offset 4)
+      c-basic-offset 4)
+
+;; term mouse
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (defun track-mouse (e)) 
+  (setq mouse-sel-mode t)
+  )
 
 (provide 'init-better-defaults)

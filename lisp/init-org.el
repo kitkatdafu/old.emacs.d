@@ -5,6 +5,11 @@
 (set-language-environment "UTF-8")
 (add-hook 'org-mode-hook 'toggle-truncate-lines)
 
+(setq org-agenda-files '("~/gtd/gtd.org"))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
 (add-to-list 'org-structure-template-alist '("TITLE" "#+TITLE: 
 #+AUTHOR: Yi Chen
 #+EMAIL: ychen878@wisc.edu
