@@ -5,6 +5,8 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+;; circumvent signature check
+(setq package-check-signature nil)
 
 ;; (require 'check-location)
 (require 'init-packages)

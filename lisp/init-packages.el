@@ -76,6 +76,9 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+;; enable flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; setup swiper/ivy
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -121,6 +124,8 @@
 
 ;; setup lsp-mode
 (require 'lsp-mode)
+(setq lsp-prefer-flymake nil) ;; prefer flycheck
+(setq lsp-enable-indentation t)
 (require 'lsp-haskell)
 (setq lsp-haskell-process-path-hie "hie-wrapper")
 (add-hook 'prog-mode-hook #'lsp)
