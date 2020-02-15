@@ -11,17 +11,18 @@
     (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 			     ("melpa" . "http://elpa.emacs-china.org/melpa/")))
     (setq package-archives '(
-			      ("melpa-stable" . "https://stable.melpa.org/packages/")
+			      ("melpa-stable" . "http://stable.melpa.org/packages/")
 			      ("gnu" . "http://elpa.gnu.org/packages/")
-			      ("elpa" . "https://melpa.org/packages/")
+			      ("elpa" . "http://melpa.org/packages/")
 			      ))
 )
 
 ;; cl - Common Lisp Extension
 (require 'cl)
 
-(setenv "PATH" (concat "/usr/local/smlnj/bin:" (getenv "PATH")))
-(setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
+;; (setenv "PATH" (concat "/usr/local/smlnj/bin:" (getenv "PATH")))
+;; (setq exec-path (cons "/usr/local/smlnj/bin"  exec-path))
+
 ;; Add Packages
 (defvar ddy/packages '(
                ;; --- Auto-completion ---
@@ -57,6 +58,7 @@
 	       flyspell-popup
 	       rust-mode
 	       ;; sml-mode
+	       ox-twbs
 	       ;; --- Themes ---
 	       doom-themes
 	       ) "Default packages")
@@ -129,6 +131,11 @@
 (require 'lsp-haskell)
 (setq lsp-haskell-process-path-hie "hie-wrapper")
 (add-hook 'prog-mode-hook #'lsp)
+
+;; setup lsp-ui
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'prog-mode-hook 'flycheck-mode)
 
 (require 'company-lsp)
 (setq company-lsp-async 1)
