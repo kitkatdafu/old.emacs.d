@@ -34,6 +34,9 @@
 	     (ignore-errors (backward-up-list))
 	     (funcall fn)))))
 
+;; set default directory
+(setq default-directory "~/Documents/")
+
 ;; Replace DOS eolns CR LF with Unix eolns CR
 (defun remove-dos-eol ()
   "Replace DOS eolns CR LF with Unix eolns CR"
@@ -81,5 +84,8 @@
   (defun track-mouse (e)) 
   (setq mouse-sel-mode t)
   )
+
+;; use python3
+(setq python-shell-interpreter "python3")
 
 (provide 'init-better-defaults)
