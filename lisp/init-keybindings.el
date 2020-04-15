@@ -13,8 +13,6 @@
 
 (global-set-key (kbd "M-s o") 'occur-dwim)
 
-(js2r-add-keybindings-with-prefix "C-c C-m")
-
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key (kbd "M-s e") 'iedit-mode)
