@@ -6,3 +6,6 @@ auto-save-list/
 lisp/custom.el
 recentf
 recentf~
+.cache/treemacs-persist
+.lsp-session-v1
+.cache/treemacs-persist

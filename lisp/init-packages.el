@@ -57,10 +57,12 @@
 	       fill-column-indicator
 	       flyspell-popup
 	       rust-mode
+	       all-the-icons
 	       ;; sml-mode
 	       ox-twbs
 	       ;; --- Themes ---
 	       doom-themes
+	       evil
 	       ) "Default packages")
 
 (setq package-selected-packages ddy/packages)
@@ -80,6 +82,10 @@
 
 ;; enable flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; evil mode
+(require 'evil)
+(evil-mode 1)
 
 ;; setup swiper/ivy
 (ivy-mode 1)
@@ -166,6 +172,9 @@
 (setq nyan-wavy-trail t)
 (setq nyan-animate-nyancat t)
 
+;; all the icons
+(require 'all-the-icons)
+
 ;; setup doom themes
 (require 'doom-themes)
 ;; Global settings (defaults)
@@ -176,7 +185,7 @@
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 ;; (doom-themes-neotree-config)
 ;; or for treemacs users
-;; (doom-themes-treemacs-config)
+(doom-themes-treemacs-config)
 ;; org-mode's native fontification.
 (doom-themes-org-config)
 
@@ -235,5 +244,10 @@
                (null popup-instances))
       (setq sanityinc/fci-mode-suppressed nil)
       (turn-on-fci-mode)))
+
+;; setup rust mode
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
+(setq rust-format-on-save t)
 
 (provide 'init-packages)
