@@ -150,6 +150,11 @@
 ;; setup treemacs
 (setq treemacs-width 30)
 
+;; bash
+(use-package lsp-mode
+  :commands lsp
+  :hook
+  (sh-mode . lsp))
 
 ;; setup js2-mode
 ;; (setq auto-mode-alist
