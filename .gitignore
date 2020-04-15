@@ -1,11 +1,8 @@
-.lsp-session-v1/
-.cache/
-elpa/
-.DS_Store
-auto-save-list/
-lisp/custom.el
-recentf
-recentf~
-.cache/treemacs-persist
-.lsp-session-v1
-.cache/treemacs-persist
+# Ignore everything
+*
+
+# But not these files
+!.gitignore
+!lisp/
+!init.el
+!.git
