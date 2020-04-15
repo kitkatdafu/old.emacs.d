@@ -53,7 +53,6 @@
 	       treemacs
 	       htmlize
 	       haskell-mode
-	       org-ref
 	       fill-column-indicator
 	       flyspell-popup
 	       rust-mode
