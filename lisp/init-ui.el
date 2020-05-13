@@ -8,7 +8,7 @@
 ;; 关闭启动帮助画面
 (setq inhibit-splash-screen t)
 ;; 更改显示字体
-(setq FONT "Iosevka-14")
+(setq FONT "Iosevka-16")
 (set-face-attribute 'default nil :font FONT)
 
 (set-frame-font FONT nil t)

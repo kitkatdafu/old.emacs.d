@@ -47,6 +47,7 @@
 	       auto-yasnippet
 	       lsp-mode
 	       company-lsp
+	       company-box
 	       lsp-treemacs
 	       lsp-ui
 	       lsp-haskell
@@ -57,6 +58,7 @@
 	       flyspell-popup
 	       rust-mode
 	       all-the-icons
+	       tuareg
 	       ;; sml-mode
 	       ox-twbs
 	       ;; --- Themes ---
@@ -190,10 +192,13 @@
 ;; setup company
 (require 'company)
 (add-hook 'prog-mode-hook 'company-mode)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
-
+(require 'company-box)
+(add-hook 'company-mode-hook 'company-box-mode)
 ;; setup popwin
 (require 'popwin)
 (popwin-mode t)
