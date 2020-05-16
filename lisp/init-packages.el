@@ -54,7 +54,6 @@
 	       treemacs
 	       htmlize
 	       haskell-mode
-	       fill-column-indicator
 	       flyspell-popup
 	       rust-mode
 	       all-the-icons
@@ -176,12 +175,13 @@
 (require 'all-the-icons)
 
 ;; setup doom themes
-(require 'doom-themes)
+(require 'doom-themes
+)
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
 ;; Load the theme (doom-one, doom-molokai, etc);
-(load-theme 'doom-one t)
+(load-theme 'doom-one-light t)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
 ;; (doom-themes-neotree-config)
 ;; or for treemacs users
@@ -226,27 +226,6 @@
 ;; setup yasnippet
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
-
-;; setup fci-mode
-(require 'fill-column-indicator)
-(setq fci-rule-column 120)
-(defun sanityinc/fci-enabled-p () (symbol-value 'fci-mode))
-  (defvar sanityinc/fci-mode-suppressed nil)
-  (make-variable-buffer-local 'sanityinc/fci-mode-suppressed)
-
-  (defadvice popup-create (before suppress-fci-mode activate)
-    "Suspend fci-mode while popups are visible"
-    (let ((fci-enabled (sanityinc/fci-enabled-p)))
-      (when fci-enabled
-        (setq sanityinc/fci-mode-suppressed fci-enabled)
-        (turn-off-fci-mode))))
-
-  (defadvice popup-delete (after restore-fci-mode activate)
-    "Restore fci-mode when all popups have closed"
-    (when (and sanityinc/fci-mode-suppressed
-               (null popup-instances))
-      (setq sanityinc/fci-mode-suppressed nil)
-      (turn-on-fci-mode)))
 
 ;; setup rust mode
 (add-hook 'rust-mode-hook
