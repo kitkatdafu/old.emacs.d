@@ -31,6 +31,12 @@
 (global-set-key (kbd "M-a") 'move-beginning-of-line)
 
 
+;; treemacs
+(global-set-key (kbd "C-x t t") 'treemacs)
+(global-set-key (kbd "C-x t 1") 'treemacs-delete-other-windows)
+(global-set-key (kbd "M-0") 'treemacs-select-window)
+(global-set-key (kbd "C-x t f") 'treemacs-find-file)
+
 ;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
 (global-set-key (kbd "<f2>") 'open-init-file)
 
