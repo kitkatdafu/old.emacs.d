@@ -57,6 +57,9 @@
 	       flyspell-popup
 	       rust-mode
 	       all-the-icons
+	       magit
+	       treemacs-magit
+	       treemacs-icons-dired
 	       tuareg
 	       ;; sml-mode
 	       ox-twbs
