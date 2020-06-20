@@ -61,6 +61,7 @@
 	       treemacs-magit
 	       treemacs-icons-dired
 	       tuareg
+	       org-ref
 	       ;; sml-mode
 	       ox-twbs
 	       ;; --- Themes ---
@@ -89,6 +90,9 @@
 ;; evil mode
 (require 'evil)
 (evil-mode 1)
+
+;; org-ref
+(require 'org-ref)
 
 ;; setup swiper/ivy
 (ivy-mode 1)
