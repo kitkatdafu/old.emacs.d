@@ -74,7 +74,6 @@
     (setq list (cdr list)))
   )
 
-(setq posframe--timeout-timer 20)
 (global-set-key (kbd "<f9>") (lambda () (interactive)
 			       (print-elements-of-list (reverse (dle-rae-query (downcase (thing-at-point 'word 'no-properties)))))
 			       (when (posframe-workable-p)
