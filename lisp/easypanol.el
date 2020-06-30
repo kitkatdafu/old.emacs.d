@@ -4,6 +4,10 @@
 ;; Also allows you to find definition of Spanish word from RAE dictionary.
 
 ;;; Code:
+
+;; dictionary
+(setq ispell-dictionary "spanish")
+
 ;; lower case vowels; vocables en minúsculas
 (global-set-key (kbd "C-' a") (lambda () (interactive) (insert "á")))
 (global-set-key (kbd "C-' e") (lambda () (interactive) (insert "é")))
