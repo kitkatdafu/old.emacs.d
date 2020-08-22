@@ -8,6 +8,16 @@
 ;; dictionary
 (setq ispell-dictionary "spanish")
 
+;; switch dictionary language between Spanish and English
+(defun switch-dictionary-language ()
+  (interactive)
+  (if (string= ispell-dictionary "spanish")
+      (setq ispell-dictionary "english")
+      (setq ispell-dictionary "spanish"))
+  (ispell-change-dictionary ispell-dictionary)
+  )
+
+
 ;; lower case vowels; vocables en minúsculas
 (global-set-key (kbd "C-' a") (lambda () (interactive) (insert "á")))
 (global-set-key (kbd "C-' e") (lambda () (interactive) (insert "é")))
