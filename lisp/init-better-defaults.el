@@ -65,17 +65,17 @@
         (message "Indent buffer.")))))
 
 ;; setup web-mode indentation
-(defun my-web-mode-indent-setup ()
-  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
-  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
-  (setq js2-basic-offset 2)
-  )
-(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+;; (defun my-web-mode-indent-setup ()
+;;   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+;;   (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+;;   (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+;;   (setq js2-basic-offset 2)
+;;   )
+;; (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
 ;; c indent
 (setq c-default-style "linux"
-      c-basic-offset 2)
+      c-basic-offset 4)
 
 ;; term mouse
 (unless window-system
