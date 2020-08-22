@@ -81,8 +81,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; evil mode
-;; (require 'evil)
-;; (evil-mode 1)
+(require 'evil)
+(evil-mode 1)
 
 ;; org-ref
 ;; (require 'org-ref)
