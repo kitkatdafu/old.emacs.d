@@ -25,9 +25,7 @@
 
 ;; Add Packages
 (defvar ddy/packages '(
-               ;; --- Auto-completion ---
                company
-               ;; --- Better Editor ---
                hungry-delete
 	       swiper
 	       counsel
@@ -37,12 +35,9 @@
 	       expand-region
 	       iedit
 	       flycheck
-               ;; js2-mode
 	       web-mode
-               ;; nodejs-repl
                exec-path-from-shell
 	       nyan-mode
-	       ;  js2-refactor
 	       yasnippet
 	       auto-yasnippet
 	       lsp-mode
@@ -62,11 +57,9 @@
 	       treemacs-icons-dired
 	       tuareg
 	       org-ref
-	       ;; sml-mode
 	       ox-twbs
-	       ;; --- Themes ---
 	       doom-themes
-	       evil
+	       ;; evil
 	       ) "Default packages")
 
 (setq package-selected-packages ddy/packages)
@@ -88,11 +81,11 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; evil mode
-(require 'evil)
-(evil-mode 1)
+;; (require 'evil)
+;; (evil-mode 1)
 
 ;; org-ref
-(require 'org-ref)
+;; (require 'org-ref)
 
 ;; setup swiper/ivy
 (ivy-mode 1)
@@ -141,6 +134,7 @@
 (require 'lsp-mode)
 (setq lsp-prefer-flymake nil) ;; prefer flycheck
 (setq lsp-enable-indentation t)
+
 (require 'lsp-haskell)
 (setq lsp-haskell-process-path-hie "hie-wrapper")
 (add-hook 'prog-mode-hook #'lsp)
@@ -199,13 +193,13 @@
 ;; setup company
 (require 'company)
 (add-hook 'prog-mode-hook 'company-mode)
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.125)
+(setq company-minimum-prefix-length 2)
 (setq help-at-pt-display-when-idle t)
-(setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 (require 'company-box)
 (add-hook 'company-mode-hook 'company-box-mode)
+
 ;; setup popwin
 (require 'popwin)
 (popwin-mode t)
@@ -235,8 +229,8 @@
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
 ;; setup rust mode
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
-(setq rust-format-on-save t)
+;; (add-hook 'rust-mode-hook
+;;          (lambda () (setq indent-tabs-mode nil)))
+;; (setq rust-format-on-save t)
 
 (provide 'init-packages)
