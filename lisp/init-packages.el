@@ -59,7 +59,7 @@
 	       org-ref
 	       ox-twbs
 	       doom-themes
-	       ;; evil
+	       evil
 	       ) "Default packages")
 
 (setq package-selected-packages ddy/packages)
