@@ -74,8 +74,15 @@
 ;; (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
 ;; c indent
-(setq c-default-style "linux"
-      c-basic-offset 4)
+(defun my-c++-mode-hook ()
+  (setq c-default-style "bsd")
+  (setq c-indent-level 4)
+  (setq tab-width 4)
+  (setq c-basic-offset 4))
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c-mode-hook 'my-c++-mode-hook)
+
 
 ;; term mouse
 (unless window-system
