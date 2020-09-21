@@ -45,6 +45,7 @@
 	       company-box
 	       lsp-treemacs
 	       lsp-ui
+	       lsp-python-ms
 	       lsp-haskell
 	       treemacs
 	       htmlize
@@ -155,6 +156,7 @@
 (setq lsp-prefer-flymake nil) ;; prefer flycheck
 (setq lsp-enable-indentation t)
 
+;; setup lsp-haskell
 (require 'lsp-haskell)
 (setq lsp-haskell-process-path-hie "hie-wrapper")
 (add-hook 'prog-mode-hook #'lsp)
@@ -163,6 +165,12 @@
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'prog-mode-hook 'flycheck-mode)
+
+;; setup lsp-python
+(require 'lsp-python-ms)
+(setq lsp-python-ms-auto-install-server t)
+(add-hook 'python-mode-hook #'lsp)
+
 
 (require 'company-lsp)
 (setq company-lsp-async 1)
