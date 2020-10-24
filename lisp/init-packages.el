@@ -6,16 +6,16 @@
      (require 'package)
      (package-initialize))
 
-(setq am-i-in-china nil)
-(if am-i-in-china
-    (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-			     ("melpa" . "http://elpa.emacs-china.org/melpa/")))
-    (setq package-archives '(
-			      ("melpa-stable" . "http://stable.melpa.org/packages/")
-			      ("gnu" . "http://elpa.gnu.org/packages/")
-			      ("elpa" . "http://melpa.org/packages/")
-			      ))
-)
+;; (setq am-i-in-china nil)
+;; (if am-i-in-china
+;;     (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+;; 			     ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+;;     (setq package-archives '(
+;; 			      ("melpa-stable" . "http://stable.melpa.org/packages/")
+;; 			      ("gnu" . "http://elpa.gnu.org/packages/")
+;; 			      ("elpa" . "http://melpa.org/packages/")
+;; 			      ))
+;; )
 
 ;; cl - Common Lisp Extension
 (require 'cl)
@@ -156,10 +156,6 @@
 (setq lsp-prefer-flymake nil) ;; prefer flycheck
 (setq lsp-enable-indentation t)
 
-;; setup lsp-haskell
-(require 'lsp-haskell)
-(setq lsp-haskell-process-path-hie "hie-wrapper")
-(add-hook 'prog-mode-hook #'lsp)
 
 ;; setup lsp-ui
 (require 'lsp-ui)
@@ -171,6 +167,12 @@
 (setq lsp-python-ms-auto-install-server t)
 (add-hook 'python-mode-hook #'lsp)
 
+;; setup lsp-haskell
+(require 'lsp-haskell)
+(setq lsp-haskell-process-path-hie "ghcide")
+(setq lsp-haskell-process-args-hie '())
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'haskell-literate-mode-hook #'lsp)
 
 (require 'company-lsp)
 (setq company-lsp-async 1)
@@ -260,5 +262,6 @@
 ;; (add-hook 'rust-mode-hook
 ;;          (lambda () (setq indent-tabs-mode nil)))
 ;; (setq rust-format-on-save t)
+
 
 (provide 'init-packages)
