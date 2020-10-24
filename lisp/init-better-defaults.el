@@ -75,7 +75,7 @@
 
 ;; c indent
 (defun my-c++-mode-hook ()
-  (setq c-default-style "bsd")
+  (setq c-default-style "linux")
   (setq c-indent-level 4)
   (setq tab-width 4)
   (setq c-basic-offset 4))
