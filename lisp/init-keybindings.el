@@ -40,4 +40,7 @@
 ;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
 (global-set-key (kbd "<f2>") 'open-init-file)
 
+(global-set-key (kbd "S-m m") (lambda () (interactive) (insert "$$"))) ;; inline
+(global-set-key (kbd "S-m e") (lambda () (interactive) (insert "\[\]"))) ;; equation
+
 (provide 'init-keybindings)
