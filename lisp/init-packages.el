@@ -61,6 +61,7 @@
 	       ox-twbs
 	       doom-themes
 	       evil
+	       ivy-bibtex
 	       ) "Default packages")
 
 (setq package-selected-packages ddy/packages)
@@ -105,8 +106,6 @@
                (delete-trailing-whitespace)
                nil))
 
-;; org-ref
-;; (require 'org-ref)
 
 ;; setup swiper/ivy
 (ivy-mode 1)
@@ -260,5 +259,21 @@
 ;; (add-hook 'rust-mode-hook
 ;;          (lambda () (setq indent-tabs-mode nil)))
 ;; (setq rust-format-on-save t)
+
+
+;; set bibtex
+(setq bibtex-completion-library-path '("~/Documents/bibliography/bibtex-pdfs/"))
+
+;; org-ref
+(require 'org-ref)
+(setq reftex-default-bibliography '("~/Documents/bibliography/references.bib"))
+(setq org-ref-bibliography-notes "~/Documents/bibliography/notes.org"
+      org-ref-default-bibliography '("~/Documents/bibliography/references.bib")
+      org-ref-pdf-directory "~/Documents/bibliography/bibtex-pdfs/")
+(setq org-latex-pdf-process
+      '("pdflatex -interaction nonstopmode -output-directory %o %f"
+	"bibtex %b"
+	"pdflatex -interaction nonstopmode -output-directory %o %f"
+	"pdflatex -interaction nonstopmode -output-directory %o %f"))
 
 (provide 'init-packages)
