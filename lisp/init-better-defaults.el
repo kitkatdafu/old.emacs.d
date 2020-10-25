@@ -1,6 +1,11 @@
-;; 显示对应括号
+;;; package --- init-better-defaults
+;;; Commentary:
+;;; Better editing experience here
+
+;;; Code:
+;; show parenthesis in pair
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
-;; 高亮当前行
+;; highlight the current row
 (global-hl-line-mode t)
 ;; using y or n instead of yes or no
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -11,24 +16,28 @@
   (exec-path-from-shell-initialize))
 ;; disable auto-save
 (setq auto-save-default nil)
-;; 禁止备份文件
+;; disable backup
 (setq make-backup-files nil)
-;; 启动recentf-mode
+
+;; enable recentf-mode
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-item 10)
-;; 替换选中部分
+
+;; delete selection
 (delete-selection-mode t)
-;; indent the whole buffer
+
 (defun indent-buffer()
+  "This function indent the whole buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
-;; disable doubling quotation mark in lisp 
+
+;; disable doubling quotation mark in lisp
 (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
 
 ;; highlight parentesis when cursor is in side two parenteses.
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
-  "Highlight enclosing parens."
+  "Highlight enclosing parenthesis."
   (cond ((looking-at-p "\\s(") (funcall fn))
 	(t (save-excursion
 	     (ignore-errors (backward-up-list))
@@ -37,14 +46,12 @@
 ;; set default directory
 (setq default-directory "~/Documents/")
 
-;; Replace DOS eolns CR LF with Unix eolns CR
 (defun remove-dos-eol ()
-  "Replace DOS eolns CR LF with Unix eolns CR"
+  "Replace DOS end-of-lines with Unix end-of-lines."
   (interactive)
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
-;; Do not show ^M in files containing mixed UNIX and DOS line endings.
 (defun hidden-dos-eol ()
   "Do not show ^M in files containing mixed UNIX and DOS line endings."
   (interactive)
@@ -54,6 +61,7 @@
 
 ;; indent region
 (defun indent-region-or-buffer()
+  "Indent selected region."
   (interactive)
   (save-excursion
     (if (region-active-p)
@@ -65,13 +73,12 @@
         (message "Indent buffer.")))))
 
 ;; setup web-mode indentation
-;; (defun my-web-mode-indent-setup ()
-;;   (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
-;;   (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
-;;   (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
-;;   (setq js2-basic-offset 2)
-;;   )
-;; (add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  (setq js2-basic-offset 2))
+(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
 
 ;; c indent
 (defun my-c++-mode-hook ()
@@ -88,11 +95,16 @@
 (unless window-system
   (require 'mouse)
   (xterm-mouse-mode t)
-  (defun track-mouse (e)) 
-  (setq mouse-sel-mode t)
-  )
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t))
 
 ;; use python3
 (setq python-shell-interpreter "python3")
 
+(defun open-init-package-file()
+  "Open init-packages file."
+  (interactive)
+  (find-file "~/.emacs.d/lisp/init-packages.el"))
+
 (provide 'init-better-defaults)
+;;; init-better-defaults.el ends here
