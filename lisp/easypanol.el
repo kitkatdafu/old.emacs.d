@@ -1,7 +1,7 @@
 ;;; easypanol.el --- Easy Spanish characters from US keyboard
 ;;; Commentary:
-;; This package provide an easy way to enter Spanish characters from US keyboard.
-;; Also allows you to find definition of Spanish word from RAE dictionary.
+;;; This package provide an easy way to enter Spanish characters from US keyboard.
+;;; Also allows you to find definition of Spanish word from RAE dictionary.
 
 ;;; Code:
 
@@ -103,8 +103,7 @@
 						:max-width 100
 						)
 				 )))
-;; decir
-;; hola
+
 (accent-char-mode)
 (provide 'easypanol)
 ;;; easypanol.el ends here
