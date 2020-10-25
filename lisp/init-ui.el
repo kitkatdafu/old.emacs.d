@@ -1,22 +1,27 @@
-;; 关闭工具栏，tool-bar-mode 即为一个 Minor Mode
+;;; package --- init-ui
+;;; Commentary:
+;;; Setup user interface, font, etc.
+;;; Code:
+;; turn off tool bar
 (tool-bar-mode -1)
-;; 关闭文件滑动控件
+;; turn off scroll bar
 (when (display-graphic-p)
     (scroll-bar-mode -1))
-;; 显示行号
+;; display line number
 (global-linum-mode t)
-;; 关闭启动帮助画面
+;; turn off welcome screen
 (setq inhibit-splash-screen t)
-;; 更改显示字体
-(setq FONT "Iosevka-18")
-(set-face-attribute 'default nil :font FONT)
+;; change font
+(defvar editor-font "Iosevka-15")
+(set-face-attribute 'default nil :font editor-font)
+(set-frame-font editor-font nil t)
 
-(set-frame-font FONT nil t)
-;; transparent titlebar
+;; transparent title bar
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
- ;; emacs开启时候全屏
+
+ ;; full screen when start
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
-
 (provide 'init-ui)
+;;; init-ui.el ends here
