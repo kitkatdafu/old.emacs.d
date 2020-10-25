@@ -1,3 +1,8 @@
+;;; package --- init-keybindings
+;;; Commentary:
+;;; Useful keybindings here
+;;; Code:
+
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 
 (global-set-key "\C-s" 'swiper)
@@ -31,16 +36,15 @@
 (global-set-key (kbd "M-a") 'move-beginning-of-line)
 
 
-;; treemacs
 (global-set-key (kbd "C-x t t") 'treemacs)
 (global-set-key (kbd "C-x t 1") 'treemacs-delete-other-windows)
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 (global-set-key (kbd "C-x t f") 'treemacs-find-file)
 
-;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
 (global-set-key (kbd "<f2>") 'open-init-file)
 
 (global-set-key (kbd "S-m m") (lambda () (interactive) (insert "$$"))) ;; inline
 (global-set-key (kbd "S-m e") (lambda () (interactive) (insert "\[\]"))) ;; equation
 
 (provide 'init-keybindings)
+;;; init-keybindings.el ends here
