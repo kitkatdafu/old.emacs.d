@@ -11,6 +11,7 @@
 (global-linum-mode t)
 ;; turn off welcome screen
 (setq inhibit-splash-screen t)
+
 ;; change font
 (defvar editor-font "Iosevka-15")
 (set-face-attribute 'default nil :font editor-font)
