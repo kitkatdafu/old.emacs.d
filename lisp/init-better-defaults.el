@@ -101,6 +101,7 @@
 ;; use python3
 (setq python-shell-interpreter "python3")
 
+
 (defun open-init-package-file()
   "Open init-packages file."
   (interactive)
