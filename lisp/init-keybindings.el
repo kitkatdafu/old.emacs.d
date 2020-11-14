@@ -43,8 +43,24 @@
 
 (global-set-key (kbd "<f2>") 'open-init-file)
 
-(global-set-key (kbd "S-m m") (lambda () (interactive) (insert "$$"))) ;; inline
-(global-set-key (kbd "S-m e") (lambda () (interactive) (insert "\[\]"))) ;; equation
+(global-set-key (kbd "s-m") nil) ;; disable s-m
+
+(defun insert-inline-latex (begin end)
+  (interactive "r")
+  (insert-before-markers (concat (concat "$" (buffer-substring begin end)) "$"))
+  (delete-region begin end)
+)
+
+(defun insert-equation-latex (begin end)
+  (interactive "r")
+  (insert-before-markers (concat (concat "\\[" (buffer-substring begin end)) "\\]"))
+  (delete-region begin end)
+)
+
+(global-set-key (kbd "s-m m") 'insert-inline-latex) ;; inline
+
+(global-set-key (kbd "s-m e") 'insert-equation-latex) ;; equation
+
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
