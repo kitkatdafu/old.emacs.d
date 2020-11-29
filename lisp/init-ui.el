@@ -13,7 +13,7 @@
 (setq inhibit-splash-screen t)
 
 ;; change font
-(defvar editor-font "Iosevka-15")
+(defvar editor-font "PragmataPro Mono-20")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 
