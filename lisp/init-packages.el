@@ -12,6 +12,8 @@
 			 ("elpa" . "http://melpa.org/packages/")
 			 ))
 
+
+
 ;; Add Packages
 (defvar ddy/packages '(
                company
@@ -20,10 +22,11 @@
 	       counsel
 	       ivy
                smartparens
-	       popwin
+	       ;; popwin
 	       expand-region
 	       iedit
 	       flycheck
+	       flycheck-rust
                exec-path-from-shell
 	       nyan-mode
 	       yasnippet
@@ -42,10 +45,11 @@
 	       treemacs
 	       treemacs-icons-dired
 	       treemacs-magit
+	       all-the-icons
 	       haskell-mode
 	       flyspell-popup
 	       rust-mode
-	       all-the-icons
+	       cargo
 	       magit
 	       tuareg
 	       org-ref
@@ -71,59 +75,18 @@
       (package-install pkg))))
 
 ;; enable flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'prog-mode-hook 'flycheck-mode)
 
 ;; evil mode
 (require 'evil)
 (evil-mode 1)
-
-;; web-mode
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-
-(defun my-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-)
-(add-hook 'web-mode-hook 'my-web-mode-hook)
-
-(add-hook 'write-file-functions
-            (lambda ()
-               (delete-trailing-whitespace)
-               nil))
 
 ;; setup swiper/ivy
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
-;; setup imenu
-(defun js2-imenu-make-index ()
-  "Function for setting js2-imenu."
-  (interactive)
-  (save-excursion
-    (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
-    (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-			       ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-			       ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-			       ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-			       ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-			       ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
-			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-			       ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
-			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
-			       ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
-(add-hook 'js2-mode-hook
-	  (lambda ()
-	    (setq imenu-create-index-function 'js2-imenu-make-index)))
-
-
-;; setup dwim 
+;; setup dwim
 (defun occur-dwim ()
   "Call `occur' with a sane default."
   (interactive)
@@ -137,30 +100,43 @@
 	regexp-history)
   (call-interactively 'occur))
 
-;; setup nodejs-repl
-(require 'nodejs-repl)
-
-;; setup lsp-mode
+;; setup lsp-mode and tuning
+(setq gc-cons-threshold 200000000) ;; 2mb
+(setq read-process-output-max 3145728) ;; 3mb
 (require 'lsp-mode)
+(setq lsp-enable-file-watchers nil)
+(setq lsp-log-io nil)
+(setq lsp-completion-provider :capf)
+(setq lsp-idle-delay 0.500)
 (setq lsp-prefer-flymake nil) ;; prefer flycheck
 (setq lsp-enable-indentation t)
 
 ;; setup lsp-ui
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'prog-mode-hook 'flycheck-mode)
+(setq lsp-ui-doc-enable t)
+(setq lsp-ui-doc-delay 1)
 
 ;; setup lsp-python
 (require 'lsp-python-ms)
 (setq lsp-python-ms-auto-install-server t)
-(add-hook 'python-mode-hook #'lsp)
+(add-hook 'python-mode-hook #'lsp-deferred)
 
 ;; setup lsp-haskell
 (require 'lsp-haskell)
 (setq lsp-haskell-process-path-hie "ghcide")
 (setq lsp-haskell-process-args-hie '())
 (add-hook 'haskell-mode-hook #'lsp)
-(add-hook 'haskell-literate-mode-hook #'lsp)
+(add-hook 'haskell-literate-mode-hook #'lsp-deferred)
+
+;; setup rust mode and cargo mode
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
+(add-hook 'before-save-hook (lambda () (when (eq 'rust-mode major-mode)
+                                           (lsp-format-buffer))))
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(add-hook 'rust-mode-hook #'lsp-deferred)
+
 
 (require 'company-lsp)
 (setq company-lsp-async 1)
@@ -171,16 +147,6 @@
 
 ;; setup treemacs
 (setq treemacs-width 30)
-
-;; setup js2-mode
-(setq auto-mode-alist
-     (append
-      '(("\\.js\\'" . js2-mode))
-      '(("\\.html\\'" . web-mode))
-      auto-mode-alist))
-
-;; setup js2-refactor
-(add-hook 'js2-mode-hook #'js2-refactor-mode)
 
 ;; setup smartparens
 (smartparens-global-mode t)
@@ -203,7 +169,7 @@
 ;; Load the theme (doom-one, doom-molokai, etc);
 (load-theme 'doom-one-light t)
 ;; Enable custom neotree theme (all-the-icons must be installed!)
-;; (doom-themes-neotree-config)
+(doom-themes-neotree-config)
 ;; or for treemacs users
 (doom-themes-treemacs-config)
 ;; org-mode's native fontification.
@@ -213,15 +179,11 @@
 (require 'company)
 (add-hook 'prog-mode-hook 'company-mode)
 (setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 3)
 (setq help-at-pt-display-when-idle t)
 (help-at-pt-set-timer)
 (require 'company-box)
 (add-hook 'company-mode-hook 'company-box-mode)
-
-;; setup popwin
-(require 'popwin)
-(popwin-mode t)
 
 ;; setup flyspell
 (flyspell-mode t)
@@ -241,14 +203,40 @@
                                         try-complete-lisp-symbol-partially
                                         try-complete-lisp-symbol))
 
-;; setup yasnippet
-(yas-reload-all)
-(add-hook 'prog-mode-hook #'yas-minor-mode)
+;; setup js2-mode
+(setq auto-mode-alist
+     (append
+      '(("\\.js\\'" . js2-mode))
+      '(("\\.html\\'" . web-mode))
+      auto-mode-alist))
 
-;; setup rust mode
-(add-hook 'rust-mode-hook
-         (lambda () (setq indent-tabs-mode nil)))
-(setq rust-format-on-save t)
+;; setup js2-refactor
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+
+;; setup imenu
+(defun js2-imenu-make-index ()
+  "Function for setting js2-imenu."
+  (interactive)
+  (save-excursion
+    (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
+    (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+			       ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
+			       ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
+(add-hook 'js2-mode-hook
+	  (lambda ()
+	    (setq imenu-create-index-function 'js2-imenu-make-index)))
+
+;; setup nodejs-repl
+(require 'nodejs-repl)
+
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
