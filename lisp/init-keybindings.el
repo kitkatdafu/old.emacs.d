@@ -3,6 +3,7 @@
 ;;; Useful keybindings here
 ;;; Code:
 
+
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
 
 (global-set-key "\C-s" 'swiper)
@@ -22,6 +23,8 @@
 
 (global-set-key (kbd "M-s e") 'iedit-mode)
 
+(global-set-key (kbd "s-r") 'recompile)
+
 (global-set-key (kbd "H-w") #'aya-create)
 (global-set-key (kbd "H-y") #'aya-expand)
 
@@ -32,16 +35,14 @@
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
-(global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "M-a") 'move-beginning-of-line)
+;; (global-set-key (kbd "C-a") 'back-to-indentation)
+;; (global-set-key (kbd "M-a") 'move-beginning-of-line)
 
 
 (global-set-key (kbd "C-x t t") 'treemacs)
 (global-set-key (kbd "C-x t 1") 'treemacs-delete-other-windows)
 (global-set-key (kbd "M-0") 'treemacs-select-window)
 (global-set-key (kbd "C-x t f") 'treemacs-find-file)
-
-(global-set-key (kbd "<f2>") 'open-init-file)
 
 (global-set-key (kbd "s-m") nil) ;; disable s-m
 

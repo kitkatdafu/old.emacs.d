@@ -20,9 +20,12 @@
 (setq make-backup-files nil)
 
 ;; enable recentf-mode
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-item 10)
+(use-package recentf
+  :defer 1
+  :config
+  (recentf-mode 1)
+  (setq recentf-max-menu-item 10)
+ )
 
 ;; delete selection
 (delete-selection-mode t)
@@ -93,19 +96,16 @@
 
 ;; term mouse
 (unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t)
-  (defun track-mouse (e))
-  (setq mouse-sel-mode t))
+  (use-package mouse
+    :config
+    (xterm-mouse-mode t)
+    (defun track-mouse (e))
+    (setq mouse-sel-mode t)
+    )
+  )
 
 ;; use python3
 (setq python-shell-interpreter "python3")
-
-
-(defun open-init-package-file()
-  "Open init-packages file."
-  (interactive)
-  (find-file "~/.emacs.d/lisp/init-packages.el"))
 
 (provide 'init-better-defaults)
 ;;; init-better-defaults.el ends here

@@ -9,13 +9,13 @@
 (setq package-archives '(
 			 ("melpa-stable" . "http://stable.melpa.org/packages/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")
-			 ("elpa" . "http://melpa.org/packages/")
 			 ))
 
 
 
 ;; Add Packages
 (defvar ddy/packages '(
+	       use-package
                company
                hungry-delete
 	       swiper
@@ -57,6 +57,7 @@
 	       doom-themes
 	       evil
 	       ivy-bibtex
+	       esup
 	       ) "Default packages.")
 
 (setq package-selected-packages ddy/packages)
@@ -78,9 +79,9 @@
 (add-hook 'prog-mode-hook 'flycheck-mode)
 
 ;; evil mode
-(require 'evil)
-(evil-mode 1)
-
+(use-package evil
+  :config
+  (evil-mode 1))
 ;; setup swiper/ivy
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -100,32 +101,38 @@
 	regexp-history)
   (call-interactively 'occur))
 
-;; setup lsp-mode and tuning
-(setq gc-cons-threshold 200000000) ;; 2mb
-(setq read-process-output-max 3145728) ;; 3mb
-(require 'lsp-mode)
-(setq lsp-enable-file-watchers nil)
-(setq lsp-log-io nil)
-(setq lsp-completion-provider :capf)
-(setq lsp-idle-delay 0.500)
-(setq lsp-prefer-flymake nil) ;; prefer flycheck
-(setq lsp-enable-indentation t)
+;; setup lsp-mode, tuning, and lsp-ui
+(use-package lsp-mode
+  :defer t
+  :config
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-log-io nil)
+  (setq lsp-completion-provider :capf)
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-prefer-flymake nil) ;; prefer flycheck
+  (setq lsp-enable-indentation t)
+  (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-delay 1)
+  )
 
-;; setup lsp-ui
-(setq lsp-ui-doc-enable t)
-(setq lsp-ui-doc-delay 1)
 
 ;; setup lsp-python
-(require 'lsp-python-ms)
-(setq lsp-python-ms-auto-install-server t)
-(add-hook 'python-mode-hook #'lsp-deferred)
+(use-package lsp-python-ms
+  :defer t
+  :config
+  (setq lsp-python-ms-auto-install-server t)
+  (add-hook 'python-mode-hook #'lsp-deferred)
+  )
 
 ;; setup lsp-haskell
-(require 'lsp-haskell)
-(setq lsp-haskell-process-path-hie "ghcide")
-(setq lsp-haskell-process-args-hie '())
-(add-hook 'haskell-mode-hook #'lsp)
-(add-hook 'haskell-literate-mode-hook #'lsp-deferred)
+(use-package lsp-haskell
+  :defer t
+  :config
+  (setq lsp-haskell-process-path-hie "ghcide")
+  (setq lsp-haskell-process-args-hie '())
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp-deferred)
+  )
 
 ;; setup rust mode and cargo mode
 (add-hook 'rust-mode-hook
@@ -138,12 +145,16 @@
 (add-hook 'rust-mode-hook #'lsp-deferred)
 
 
-(require 'company-lsp)
-(setq company-lsp-async 1)
-(setq company-lsp-cache-candidates t)
+(use-package company-lsp
+  :defer t
+  :config
+  (setq company-lsp-async 1)
+  (setq company-lsp-cache-candidates t)
+  )
 
 ;; all the icons
-(require 'all-the-icons)
+(use-package all-the-icons
+  :defer t)
 
 ;; setup treemacs
 (setq treemacs-width 30)
@@ -152,38 +163,43 @@
 (smartparens-global-mode t)
 
 ;; setup nyan-mode cat
-(require 'nyan-mode)
-(nyan-mode)
-(nyan-start-animation)
-(setq nyan-wavy-trail t)
-(setq nyan-animate-nyancat t)
+(use-package nyan-mode
+  :config
+  (nyan-mode)
+  (nyan-start-animation)
+  (setq nyan-wavy-trail t)
+  (setq nyan-animate-nyancat t)
+  )
 
 ;; all the icons
-(require 'all-the-icons)
+(use-package all-the-icons
+  :defer t)
 
 ;; setup doom themes
-(require 'doom-themes)
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t
-      doom-themes-enable-italic t)
-;; Load the theme (doom-one, doom-molokai, etc);
-(load-theme 'doom-one-light t)
-;; Enable custom neotree theme (all-the-icons must be installed!)
-(doom-themes-neotree-config)
-;; or for treemacs users
-(doom-themes-treemacs-config)
-;; org-mode's native fontification.
-(doom-themes-org-config)
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-one-light t)
+  (doom-themes-neotree-config)
+  (doom-themes-treemacs-config)
+  (doom-themes-org-config)
+  )
 
 ;; setup company
-(require 'company)
-(add-hook 'prog-mode-hook 'company-mode)
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 3)
-(setq help-at-pt-display-when-idle t)
-(help-at-pt-set-timer)
-(require 'company-box)
-(add-hook 'company-mode-hook 'company-box-mode)
+(use-package company
+  :config
+  (add-hook 'prog-mode-hook 'company-mode)
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (setq help-at-pt-display-when-idle t)
+  (help-at-pt-set-timer)
+  )
+
+(use-package company-box
+  :config
+  (add-hook 'company-mode-hook 'company-box-mode)
+  )
 
 ;; setup flyspell
 (flyspell-mode t)
@@ -207,6 +223,7 @@
 (setq auto-mode-alist
      (append
       '(("\\.js\\'" . js2-mode))
+
       '(("\\.html\\'" . web-mode))
       auto-mode-alist))
 
@@ -235,7 +252,8 @@
 	    (setq imenu-create-index-function 'js2-imenu-make-index)))
 
 ;; setup nodejs-repl
-(require 'nodejs-repl)
+(use-package nodejs-repl
+  :defer t)
 
 
 (provide 'init-packages)
