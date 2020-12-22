@@ -58,6 +58,7 @@
 	       evil
 	       ivy-bibtex
 	       esup
+	       doom-modeline
 	       ) "Default packages.")
 
 (setq package-selected-packages ddy/packages)
@@ -115,7 +116,6 @@
   (setq lsp-ui-doc-delay 1)
   )
 
-
 ;; setup lsp-python
 (use-package lsp-python-ms
   :defer t
@@ -152,39 +152,8 @@
   (setq company-lsp-cache-candidates t)
   )
 
-;; all the icons
-(use-package all-the-icons
-  :defer t)
-
-;; setup treemacs
-(setq treemacs-width 30)
-
 ;; setup smartparens
 (smartparens-global-mode t)
-
-;; setup nyan-mode cat
-(use-package nyan-mode
-  :config
-  (nyan-mode)
-  (nyan-start-animation)
-  (setq nyan-wavy-trail t)
-  (setq nyan-animate-nyancat t)
-  )
-
-;; all the icons
-(use-package all-the-icons
-  :defer t)
-
-;; setup doom themes
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-	doom-themes-enable-italic t)
-  (load-theme 'doom-one-light t)
-  (doom-themes-neotree-config)
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config)
-  )
 
 ;; setup company
 (use-package company
@@ -223,7 +192,6 @@
 (setq auto-mode-alist
      (append
       '(("\\.js\\'" . js2-mode))
-
       '(("\\.html\\'" . web-mode))
       auto-mode-alist))
 
