@@ -8,6 +8,7 @@
 
 (setq package-archives '(
 			 ("melpa-stable" . "http://stable.melpa.org/packages/")
+			 ("melpa"        . "https://melpa.org/packages/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")
 			 ))
 
@@ -157,8 +158,8 @@
 
 ;; setup company
 (use-package company
+  :hook (prog-mode . company-mode)
   :config
-  (add-hook 'prog-mode-hook 'company-mode)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 3)
   (setq help-at-pt-display-when-idle t)
@@ -166,9 +167,7 @@
   )
 
 (use-package company-box
-  :config
-  (add-hook 'company-mode-hook 'company-box-mode)
-  )
+  :hook (company-mode . company-box-mode))
 
 ;; setup flyspell
 (flyspell-mode t)
