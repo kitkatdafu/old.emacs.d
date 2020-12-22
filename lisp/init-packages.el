@@ -56,7 +56,6 @@
 	       ox-twbs
 	       doom-themes
 	       evil
-	       ivy-bibtex
 	       esup
 	       doom-modeline
 	       ) "Default packages.")
@@ -83,6 +82,7 @@
 (use-package evil
   :config
   (evil-mode 1))
+
 ;; setup swiper/ivy
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
