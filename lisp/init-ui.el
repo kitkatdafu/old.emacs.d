@@ -45,7 +45,7 @@
   :config
   (setq doom-themes-enable-bold t
 	doom-themes-enable-italic t)
-  (load-theme 'doom-one)
+  (load-theme 'doom-one t)
   (doom-themes-neotree-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
