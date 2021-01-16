@@ -13,7 +13,7 @@
 (setq inhibit-splash-screen t)
 
 ;; change font
-(defvar editor-font "PragmataPro Mono-20")
+(defvar editor-font "Iosevka-18")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 
@@ -45,7 +45,7 @@
   :config
   (setq doom-themes-enable-bold t
 	doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
+  (load-theme 'doom-one-light t)
   (doom-themes-neotree-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config)
@@ -54,6 +54,40 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+;; ligatures
+(let ((ligatures `((?-  . ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
+                   (?/  . ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
+                   (?*  . ,(regexp-opt '("*>" "***" "*/")))
+                   (?<  . ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||::=" "<|>" "<:" "<>" "<-<"
+                                         "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
+                                         "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
+                   (?:  . ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=")))
+                   (?=  . ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
+                   (?!  . ,(regexp-opt '("!==" "!!" "!=")))
+                   (?>  . ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
+                   (?&  . ,(regexp-opt '("&&&" "&&")))
+                   (?|  . ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
+                   (?.  . ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
+                   (?+  . ,(regexp-opt '("+++" "+>" "++")))
+                   (?\[ . ,(regexp-opt '("[||]" "[<" "[|")))
+                   (?\{ . ,(regexp-opt '("{|")))
+                   (?\? . ,(regexp-opt '("??" "?." "?=" "?:")))
+                   (?#  . ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
+                   (?\; . ,(regexp-opt '(";;")))
+                   (?_  . ,(regexp-opt '("_|_" "__")))
+                   (?\\ . ,(regexp-opt '("\\" "\\/")))
+                   (?~  . ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
+                   (?$  . ,(regexp-opt '("$>")))
+                   (?^  . ,(regexp-opt '("^=")))
+                   (?\] . ,(regexp-opt '("]#"))))))
+  (dolist (char-regexp ligatures)
+    (set-char-table-range composition-function-table (car char-regexp)
+                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
+
+(use-package composite
+  :hook (prog-mode . auto-composition-mode)
+  :init (global-auto-composition-mode -1))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
