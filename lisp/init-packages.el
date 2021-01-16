@@ -222,6 +222,5 @@
 (use-package nodejs-repl
   :defer t)
 
-
 (provide 'init-packages)
 ;;; init-packages.el ends here
