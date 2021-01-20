@@ -1,8 +1,0 @@
-* My Emacs Config
-  I mainly use Emacs to take notes. As an Spanish major student with an US layout keyboard, it is hard to take notes in Spanish. This config allows me to enter characters with accent and other Spanish characters (applaud to @casouri).
-  #+CAPTION: Typing in Spanish
-  [[./screenshots/type.gif]]
-  \\
-  The config also allows me to look up word under the point in RAE dictionary.
-  #+CAPTION: Look up words in RAE
-  [[./screenshots/rae.png]]
