@@ -1,4 +1,5 @@
 ;;; package --- init-packages
+
 ;;; Commentary:
 ;;; Install and setup packages here
 ;;; Code:
@@ -22,6 +23,7 @@
 	       eglot
 	       markdown-mode
 	       magit
+	       treemacs
 	       ;; company
                company
 	       company-box
@@ -35,6 +37,7 @@
 	       ;; org
 	       org
 	       ox-twbs
+	       ox-hugo
 	       ;; themes
 	       doom-themes
 	       doom-modeline
