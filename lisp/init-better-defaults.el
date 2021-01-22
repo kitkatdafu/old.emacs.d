@@ -38,7 +38,7 @@
 (defun open-init-package-file()
   "Open init-packages file."
   (interactive)
-  (find-file "~/.emacs.d/lisr/init-packages.el"))
+  (find-file "~/.emacs.d/lisp/init-packages.el"))
 ;; set tabwidth
 (setq tab-width 4)
 (defvaralias 'c-basic-offset 'tab-width)
