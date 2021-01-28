@@ -86,5 +86,9 @@
 ;; setup cargo
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
+;; ox-hugo
+(use-package ox-hugo
+  :after ox)
+
 (provide 'init-packages)
 ;;; init-packages.el ends here
