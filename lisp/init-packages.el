@@ -59,8 +59,8 @@
       (package-install pkg))))
 
 ;; setup evil
-(require 'evil)
-(evil-mode 1)
+;; (require 'evil)
+;; (evil-mode 1)
 
 ;; setup company
 (use-package company

@@ -21,28 +21,28 @@
 ;; setup all the icons
 (use-package all-the-icons)
 ;; setup nyan-mode cat
-(use-package nyan-mode
-  :config
-  (nyan-mode)
-  (nyan-start-animation)
-  (setq nyan-wavy-trail t)
-  (setq nyan-animate-nyancat t)
-  )
+;; (use-package nyan-mode
+;;   :config
+;;   (nyan-mode)
+;;   (nyan-start-animation)
+;;   (setq nyan-wavy-trail t)
+;;   (setq nyan-animate-nyancat t)
+;;  )		  
 ;; setup doom themes
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-monokai-classic t)
-  (doom-themes-visual-bell-config)
-  (setq doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config))
-;; setup doom modeline
-(use-package doom-modeline
-  :ensure t
-  :init
-  (doom-modeline-mode 1))
+;; (use-package doom-themes
+;;   :config
+;;   (setq doom-themes-enable-bold t
+;;         doom-themes-enable-italic t)
+;;   (load-theme 'doom-monokai-classic t)
+;;   (doom-themes-visual-bell-config)
+;;   (setq doom-themes-treemacs-theme "doom-colors")
+;;   (doom-themes-treemacs-config)
+;;   (doom-themes-org-config))
+;; ;; setup doom modeline
+;; (use-package doom-modeline
+;;    :ensure t
+;;    :init
+;;    (doom-modeline-mode 1))
 
 ;; setup ligatures
 (let ((ligatures `((?-  . ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
