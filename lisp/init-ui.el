@@ -12,7 +12,7 @@
 ;; display line number
 (global-linum-mode t)
 ;; setup font
-(defvar editor-font "PragmataPro Mono Liga-22")
+(defvar editor-font "PragmataPro Mono Liga-18")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 ;; setup transparent title bar
