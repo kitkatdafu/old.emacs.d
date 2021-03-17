@@ -34,6 +34,8 @@
 	       ;; rust
 	       rust-mode
 	       cargo
+	       ;; haskell
+	       haskell-mode
 	       ;; org
 	       org
 	       ox-twbs
@@ -58,6 +60,10 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+;; Find Executable Path on macOS
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; setup evil
 (require 'evil)
 (evil-mode 1)
@@ -78,10 +84,13 @@
 (require 'helm-ls-git)
 
 ;; setup eglot
+(use-package eglot :ensure t)
 (add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'haskell-mode-hook 'eglot-ensure)
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 
 ;; setup cargo
 (add-hook 'rust-mode-hook 'cargo-minor-mode)

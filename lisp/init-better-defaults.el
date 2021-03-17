@@ -16,9 +16,6 @@
 (setq inhibit-splash-screen t)
 ;; disable ring bell
 (setq ring-bell-function 'ignore)
-;; Find Executable Path on macOS
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 ;; disable auto-save
 (setq auto-save-default nil)
 ;; disable backup
