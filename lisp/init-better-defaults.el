@@ -37,8 +37,7 @@
   (interactive)
   (find-file "~/.emacs.d/lisp/init-packages.el"))
 ;; set tabwidth
-(setq tab-width 4)
-(defvaralias 'c-basic-offset 'tab-width)
-(defvaralias 'cperl-indent-level 'tab-width)
+(setq c-basic-offset 4)
+(setq cperl-indent-level 4)
 (provide 'init-better-defaults)
 ;;; init-better-defaults.el ends here

@@ -14,7 +14,7 @@
 	       use-package
                hungry-delete
                smartparens
-	       evil
+	       ;; evil
 	       all-the-icons
 	       nyan-mode
 	       exec-path-from-shell
@@ -23,6 +23,7 @@
 	       eglot
 	       markdown-mode
 	       magit
+	       cl-lib
 	       treemacs
 	       ;; company
                company
@@ -36,6 +37,8 @@
 	       cargo
 	       ;; haskell
 	       haskell-mode
+	       ;; javascript
+	       js2-mode
 	       ;; org
 	       org
 	       ox-twbs
@@ -65,8 +68,8 @@
   (exec-path-from-shell-initialize))
 
 ;; setup evil
-(require 'evil)
-(evil-mode 1)
+;; (require 'evil)
+;; (evil-mode 1)
 
 ;; setup company
 (use-package company
