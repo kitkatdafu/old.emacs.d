@@ -21,6 +21,9 @@
 (define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
 (define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") #'helm-select-action)
+;; flymake related keybindings
+(global-set-key (kbd "M-n") 'flymake-goto-next-error)
+(global-set-key (kbd "M-p") 'flymake-goto-prev-error)
 
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here

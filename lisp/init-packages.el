@@ -37,6 +37,7 @@
 	       cargo
 	       ;; haskell
 	       haskell-mode
+	       hindent
 	       ;; javascript
 	       js2-mode
 	       ;; org
@@ -101,6 +102,9 @@
 ;; ox-hugo
 (use-package ox-hugo
   :after ox)
+
+;; setup haskell
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
