@@ -3,7 +3,7 @@
 ;;; Setup user interface, font, etc.
 ;;; Code:
 ;; full screen at start
-;; (setq initial-frame-alist (quote ((fullscreen . maximized))))
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 ;; turn off tool bar
 (tool-bar-mode -1)

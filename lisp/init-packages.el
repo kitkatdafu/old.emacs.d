@@ -38,8 +38,8 @@
 	       ;; haskell
 	       haskell-mode
 	       hindent
-	       ;; javascript
-	       js2-mode
+	       ;; web-dev
+	       web-mode
 	       ;; org
 	       org
 	       ox-twbs
