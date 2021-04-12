@@ -6,56 +6,55 @@
 (require 'package)
 
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+	     '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
 
 (defvar ddy/packages '(
-	       use-package
-               hungry-delete
-               smartparens
-	       evil
-	       all-the-icons
-	       nyan-mode
-	       exec-path-from-shell
-	       swiper
-	       yasnippet
-	       eglot
-	       markdown-mode
-	       magit
-	       cl-lib
-	       treemacs
-	       ;; company
-               company
-	       company-box
-	       ;; helm
-	       helm
-	       helm-ls-git
-	       swiper-helm
-	       ;; rust
-	       rust-mode
-	       cargo
-	       ;; haskell
-	       haskell-mode
-	       hindent
-	       ;; web-dev
-	       web-mode
-	       ;; org
-	       org
-	       ox-twbs
-	       ox-hugo
-	       ;; themes
-	       doom-themes
-	       doom-modeline
-	       ) "Default packages.")
+		       use-package
+		       hungry-delete
+		       smartparens
+		       evil
+		       all-the-icons
+		       nyan-mode
+		       exec-path-from-shell
+		       swiper
+		       yasnippet
+		       eglot
+		       markdown-mode
+		       magit
+		       cl-lib
+		       treemacs
+		       ivy
+		       counsel
+		       swiper
+		       ;; company
+		       company
+		       company-box
+		       ;; rust
+		       rust-mode
+		       cargo
+		       ;; haskell
+		       haskell-mode
+		       hindent
+		       ;; web-dev
+		       web-mode
+		       ;; org
+		       org
+		       ox-twbs
+		       ox-hugo
+		       ;; themes
+		       doom-themes
+		       doom-modeline
+		       ) "Default packages.")
 
 (setq package-selected-packages ddy/packages)
 
 (defun ddy/packages-installed-p ()
   "Install packages."
   (cl-loop for pkg in ddy/packages
-	when (not (package-installed-p pkg)) do (cl-return nil)
-	finally (cl-return t)))
+	   when (not (package-installed-p pkg)) do (cl-return nil)
+	   finally (cl-return t)))
 
 (unless (ddy/packages-installed-p)
   (message "%s" "Refreshing package database...")
@@ -83,10 +82,6 @@
 (use-package company-box
   :hook (company-mode . company-box-mode))
 
-;; setup helm
-(helm-mode 1)
-(require 'helm-ls-git)
-
 ;; setup eglot
 (use-package eglot :ensure t)
 (add-hook 'rust-mode-hook 'eglot-ensure)
@@ -102,6 +97,12 @@
 ;; ox-hugo
 (use-package ox-hugo
   :after ox)
+
+;; ivy
+(ivy-mode)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(setq search-default-mode #'char-fold-to-regexp)
 
 ;; setup haskell
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)

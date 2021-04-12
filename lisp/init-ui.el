@@ -90,11 +90,5 @@
   :hook (prog-mode . auto-composition-mode)
   :init (global-auto-composition-mode -1))
 
-(setq helm-display-header-line nil)
-(helm-autoresize-mode 1)
-(setq helm-autoresize-max-height 20)
-(setq helm-autoresize-min-height 20)
-(setq helm-split-window-in-side-p t)
-
 (provide 'init-ui)
 ;;; init-ui.el ends here
