@@ -10,6 +10,7 @@
 (package-initialize)
 
 (defvar ddy/packages '(
+		       flyspell
 		       use-package
 		       hungry-delete
 		       smartparens
@@ -24,8 +25,10 @@
 		       magit
 		       cl-lib
 		       treemacs
+		       popwin
 		       ;; ivy
 		       ivy
+		       ivy-rich
 		       counsel
 		       swiper
 		       counsel-projectile
@@ -116,22 +119,24 @@
   :config
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
-  (setq search-default-mode #'char-fold-to-regexp)
-  :bind (("C-s" . swiper)
+  :bind (("\C-s" . swiper)
 	 ("M-x" . counsel-M-x)
 	 ("C-x C-f" . counsel-find-file)
 	 ("C-x C-r" . counsel-recentf)
 	 ("C-h f" . counsel-describe-function)
 	 ("C-h v" . counsel-describe-variable)
-	 ("C-h o" . counsel-describe-symbol))
-  )
+	 ("C-h o" . counsel-describe-symbol)
+	 ("C-x b" . ivy-switch-buffer)))
+(use-package ivy-rich
+  :config (ivy-rich-mode 1)
+          (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
 ;; setup haskell
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; setup hungry-delete
-(use-package hungry-delete
-  :config (global-hungry-delete-mode))
+;; (use-package hungry-delete
+;;   :config (global-hungry-delete-mode))
 
 (use-package flymake
   :bind (("M-n" . flymake-goto-next-error)
@@ -162,6 +167,14 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (counsel-projectile-mode 1)
   )
+
+;; popwin
+(use-package popwin
+  :config (popwin-mode 1))
+
+;; flyspell
+(use-package flyspell
+  :hook (org-mode . flyspell-mode))
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
