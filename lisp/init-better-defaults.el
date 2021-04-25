@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Better editing experience here
 ;;; Code:
-(require 'hungry-delete)
-(global-hungry-delete-mode)
 ;; smart parenthesis
 (smartparens-global-mode t)
 ;; show parenthesis in pair
@@ -31,11 +29,6 @@
 	     (funcall fn)))))
 ;; disable doubling quotation mark in lisp
 (sp-local-pair '(emacs-lisp-mode lisp-interaction-mode) "'" nil :actions nil)
-;; open quick open init-packages.el
-(defun open-init-package-file()
-  "Open init-packages file."
-  (interactive)
-  (find-file "~/.emacs.d/lisp/init-packages.el"))
 ;; set tabwidth
 (setq c-basic-offset 4)
 (setq cperl-indent-level 4)

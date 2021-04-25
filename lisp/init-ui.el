@@ -90,5 +90,6 @@
   :hook (prog-mode . auto-composition-mode)
   :init (global-auto-composition-mode -1))
 
+
 (provide 'init-ui)
 ;;; init-ui.el ends here
