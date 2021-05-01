@@ -104,6 +104,8 @@
 	 (haskell-mode . eglot-ensure)
 	 (c-mode . eglot-ensure)
 	 (c++-mode . eglot-ensure)
+	 (js-mode . eglot-ensure)
+	 (java-mode . eglot-ensure)
 	 (python-mode . eglot-ensure))
   :config (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd")))
 
@@ -165,8 +167,7 @@
   :hook (prog-mode . projectile-mode)
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (counsel-projectile-mode 1)
-  )
+  (counsel-projectile-mode 1))
 
 ;; popwin
 (use-package popwin

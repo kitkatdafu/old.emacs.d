@@ -16,10 +16,11 @@
   (scroll-bar-mode -1))
 
 ;; display line number
-(global-linum-mode t)
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
 
 ;; setup font
-(defvar editor-font "PragmataPro Mono Liga-16")
+(defvar editor-font "PragmataPro Mono Liga-22")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 
