@@ -11,6 +11,7 @@
 
 (defvar ddy/packages '(
 		       flyspell
+		       key-chord
 		       use-package
 		       hungry-delete
 		       smartparens
@@ -76,11 +77,15 @@
     (exec-path-from-shell-initialize)))
 
 ;; defaults are here
-(setq-default fill-column 120)
+(setq-default fill-column 80)
 
 ;; setup evil
 (use-package evil
   :config (evil-mode 1))
+
+(setq key-chord-two-keys-delay 0.5)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-mode 1)
 
 ;; setup company
 (use-package company
