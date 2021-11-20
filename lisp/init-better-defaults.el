@@ -4,7 +4,8 @@
 ;;; Code:
 ;; smart parenthesis
 (global-diff-hl-mode)
-;; (add-hook 'prog-mode-hook #'smartparens-mode)
+(smartparens-global-strict-mode nil)
+(add-hook 'prog-mode-hook #'smartparens-mode)
 ;; show parenthesis in pair
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 ;; highlight the current row

@@ -143,7 +143,9 @@
 
 ;; setup hungry-delete
 (use-package hungry-delete
-   :config (global-hungry-delete-mode))
+  :init
+  (add-hook 'minibuffer-setup-hook (lambda () (hungry-delete-mode -1)))
+  :config (global-hungry-delete-mode))
 
 (use-package flymake
   :bind (("M-n" . flymake-goto-next-error)
