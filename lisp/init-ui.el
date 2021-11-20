@@ -20,7 +20,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;; setup font
-(defvar editor-font "PragmataPro Mono Liga-22")
+(defvar editor-font "PragmataPro Mono Liga-16")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 
@@ -37,8 +37,7 @@
   (nyan-mode)
   (nyan-start-animation)
   (setq nyan-wavy-trail t)
-  (setq nyan-animate-nyancat t)
-  )		  
+  (setq nyan-animate-nyancat t))		  
 
 ;; setup doom themes
 (use-package doom-themes
@@ -54,8 +53,7 @@
 ;; setup doom modeline
 (use-package doom-modeline
   :ensure t
-  :init
-  (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1))
 
 ;; setup ligatures
 (let ((ligatures `((?-  . ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
@@ -63,7 +61,8 @@
                    (?*  . ,(regexp-opt '("*>" "***" "*/")))
                    (?<  . ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||::=" "<|>" "<:" "<>" "<-<"
                                          "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
-                                         "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
+                             
+            "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
                    (?:  . ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=")))
                    (?=  . ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
                    (?!  . ,(regexp-opt '("!==" "!!" "!=")))

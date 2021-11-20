@@ -77,7 +77,7 @@
     (exec-path-from-shell-initialize)))
 
 ;; defaults are here
-(setq-default fill-column 80)
+(setq-default fill-column 100)
 
 ;; setup evil
 (use-package evil
