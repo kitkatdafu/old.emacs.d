@@ -9,8 +9,7 @@
 
 (package-initialize)
 
-(defvar ddy/packages '(
-		       flyspell
+(defvar ddy/packages '(flyspell
 		       key-chord
 		       use-package
 		       hungry-delete
@@ -27,6 +26,7 @@
 		       cl-lib
 		       treemacs
 		       popwin
+		       diff-hl
 		       ;; ivy
 		       ivy
 		       ivy-rich
@@ -142,8 +142,8 @@
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; setup hungry-delete
-;; (use-package hungry-delete
-;;   :config (global-hungry-delete-mode))
+(use-package hungry-delete
+   :config (global-hungry-delete-mode))
 
 (use-package flymake
   :bind (("M-n" . flymake-goto-next-error)

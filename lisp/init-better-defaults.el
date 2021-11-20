@@ -3,7 +3,8 @@
 ;;; Better editing experience here
 ;;; Code:
 ;; smart parenthesis
-(smartparens-global-mode t)
+(global-diff-hl-mode)
+;; (add-hook 'prog-mode-hook #'smartparens-mode)
 ;; show parenthesis in pair
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 ;; highlight the current row
