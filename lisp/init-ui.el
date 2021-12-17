@@ -20,7 +20,7 @@
 (setq display-line-numbers-type 'relative)
 
 ;; setup font
-(defvar editor-font "PragmataPro Mono Liga-16")
+(defvar editor-font "PragmataPro Mono Liga-15")
 (set-face-attribute 'default nil :font editor-font)
 (set-frame-font editor-font nil t)
 
