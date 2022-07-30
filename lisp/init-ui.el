@@ -20,9 +20,8 @@
 (setq display-line-numbers-type 'relative)
 
 ;; setup font
-(defvar editor-font "PragmataPro Mono Liga-15")
-(set-face-attribute 'default nil :font editor-font)
-(set-frame-font editor-font nil t)
+(add-to-list 'default-frame-alist '(font . "PragmataPro Mono Liga-15"))
+(set-face-attribute 'default t :font "PragmataPro Mono Liga-15")
 
 ;; setup transparent title bar
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
