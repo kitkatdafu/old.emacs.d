@@ -10,6 +10,7 @@
 (package-initialize)
 
 (defvar ddy/packages '(flyspell
+		       flycheck
 		       key-chord
 		       use-package
 		       hungry-delete
@@ -77,17 +78,17 @@
     (exec-path-from-shell-initialize)))
 
 ;; defaults are here
-(setq-default fill-column 100)
+(setq-default fill-column 80)
 
 ;; setup evil
 (use-package evil
-  :config
-  (evil-mode 1)
-  (setq key-chord-two-keys-delay 0.5)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-mode 1)
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
+   :config
+   (evil-mode 1)
+   (setq key-chord-two-keys-delay 0.5)
+   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+   (key-chord-mode 1)
+   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line))
 
 
 ;; setup company
@@ -104,6 +105,15 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
+;; setup flycheck
+(use-package flycheck
+  :custom (flycheck-indication-mode 'right-fringe)
+  :config
+  ;; make the flycheck arror look like an exclamation point
+  (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+    [0 24 24 24 24 24 24 0 0 24 24 0 0 0 0 0 0])
+  (global-flycheck-mode))
 
 ;; setup eglot
 (use-package eglot
