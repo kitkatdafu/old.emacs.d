@@ -1,6 +1,7 @@
 ;;; package --- init-packages
 ;;; Commentary:
 ;;; Install and setup packages here
+
 ;;; Code:
 (require 'package)
 
@@ -10,8 +11,10 @@
 (package-initialize)
 
 (defvar ddy/packages '(flyspell
+		       flyspell-correct-popup
 		       flycheck
 		       key-chord
+		       cdlatex
 		       use-package
 		       hungry-delete
 		       smartparens
@@ -31,6 +34,7 @@
 		       ;; ivy
 		       ivy
 		       ivy-rich
+		       ivy-bibtex
 		       counsel
 		       swiper
 		       counsel-projectile
@@ -47,8 +51,8 @@
 		       web-mode
 		       ;; org
 		       org
+		       org-ref
 		       ox-twbs
-		       ox-hugo
 		       ;; themes
 		       doom-themes
 		       doom-modeline
@@ -84,7 +88,7 @@
 (use-package evil
    :config
    (evil-mode 1)
-   (setq key-chord-two-keys-delay 0.5)
+   (setq key-chord-two-keys-delay 0.1)
    (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
    (key-chord-mode 1)
    (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -100,6 +104,7 @@
   (setq help-at-pt-display-when-idle t)
   (define-key company-active-map (kbd "M-n") nil)
   (define-key company-active-map (kbd "M-p") nil)
+
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
@@ -173,12 +178,19 @@
 
 ;; setup org
 (use-package org
+  :config
+  (setq key-chord-two-keys-delay 0.1)
+  (key-chord-define org-mode-map "mk" "$$\C-b")
+  (key-chord-define org-mode-map "dm" "$$\n\n$$\C-p")
+  (setq cdlatex-paired-parens "([{")
+  (key-chord-mode 1)
   :init
   (set-language-environment "UTF-8")
   (setq org-src-fontify-natively t)
   (setq org-list-allow-alphabetical t)
   (setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex~" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl")))
   :hook ((org-mode . toggle-truncate-lines)
+	 (org-mode . turn-on-cdlatex)
 	 (org-mode . auto-fill-mode)))
 
 ;; setup projectile
@@ -196,6 +208,13 @@
 ;; flyspell
 (use-package flyspell
   :hook (org-mode . flyspell-mode))
+
+(use-package flyspell-correct
+  :after flyspell
+  :bind (:map flyspell-mode-map ("s-." . flyspell-correct-wrapper)))
+
+(use-package flyspell-correct-popup
+  :after flyspell-correct)
 
 (provide 'init-packages)
 ;;; init-packages.el ends here
