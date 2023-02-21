@@ -15,6 +15,9 @@
   (("C-c ]" . 'org-ref-insert-link))
   )
 
+(add-to-list 'org-structure-template-alist
+             '("a" "\n\begin{align*}\n\n\end{align*}\n"))
+(add-hook  'org-mode-hook  (lambda ()(add-to-list 'org-latex-logfiles-extensions ("tex" "bcf" "xml"))))
 
 (provide 'init-org)
 ;;; init-ui.el ends here
